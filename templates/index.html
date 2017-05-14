@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>RTX1200 DHCP Clients</h1>
+    <p><a href="{{ link }}">Jump to configuration page</a></p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Host Name</th>
+            <th>MAC Address</th>
+            <th>IP Address</th>
+            <th>Registered</th>
+            <th>Leased</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entry in entries %}
+            <tr>
+                <td>{{ entry.hostname }}</td>
+                <td>{{ entry.macaddress }}</td>
+                <td>{{ entry.ipaddress }}</td>
+                <td>{% if entry.registered %}✓{% endif %}</td>
+                <td>{% if entry.leased %}✓{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
